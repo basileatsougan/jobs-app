@@ -7,6 +7,7 @@ import { useFonts } from 'expo-font';
 
 
 
+
 const Layout = () => {
     const [fontsLoaded] = useFonts({
         DMBold: require('../assets/fonts/DMSans-Bold.ttf'),
