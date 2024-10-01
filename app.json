@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "react_native_jobs",
-    "slug": "react_native_jobs",
+    "name": "jobs-app",
+    "slug": "jobs-app",
     "scheme": "Jobs",
     "version": "1.0.0",
     "orientation": "portrait",
