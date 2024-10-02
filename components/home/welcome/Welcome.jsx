@@ -10,10 +10,28 @@ import {
 import { useState } from 'react';
 import { useRouter } from 'expo-router';
 import styles from './welcome.style'
-import { COLORS, SIZES } from '../../../constants';
+import { COLORS, SIZES, icons } from '../../../constants';
+
+
+const jobTypes = ["Full-time",  "Part-time", "Contractor"];
+
 
 const Welcome = () => {
   const router = useRouter();
+  const [activeJobType, setActiveJobType] = useState('Full-time');
+
+  const renderTab = ({ item }) => (
+    <TouchableOpacity
+    style={styles.tab(activeJobType, item)}
+    onPress={() => {
+      setActiveJobType(item);
+      router.push(`/search/${item}`)
+    }}
+    >
+      <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
+    </TouchableOpacity> 
+  );
+
   return (
     <View>
       <View style={styles.container}>
@@ -27,15 +45,30 @@ const Welcome = () => {
             style={styles.searchInput}
             value=""
             onChange={() => {}}
-            placeholder="What are you lookong for?"          
+            placeholder="What are you looking for?"          
           />
         </View>
 
+        <TouchableOpacity style={styles.searchBtn} onPress={() => {}}>
+          <Image source={icons.search}
+          resizeMode='contain'
+          style={styles.searchBtnImage}          
+          />
+        </TouchableOpacity>
+
+
       </View>
 
-
-
-
+      <View style={styles.tabsContainer}>
+        <FlatList 
+        data={jobTypes}
+        renderItem={renderTab}
+        keyExtractor={item => item}
+        contentContainerStyle={{ columnGap: SIZES.small }}
+        horizontal
+        scrollEnabled={false} // Prevent FlatList from scrolling
+        />
+      </View>
     </View>
   )
 }
