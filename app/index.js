@@ -39,6 +39,7 @@ const App = () => {
                     <Nearbyjobs />
 
                 </View>
+                
             </ScrollView>
 
 
