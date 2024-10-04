@@ -7,6 +7,7 @@ const PopularJobCard = () => {
   return (
     <View>
       <Text>PopularJobCard</Text>
+      
     </View>
   )
 }
