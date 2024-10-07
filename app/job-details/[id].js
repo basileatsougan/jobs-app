@@ -9,6 +9,7 @@ import { Company, JobAbout, JobFooter, JobTabs, ScreenHeaderBtn, Specifics} from
 import { COLORS, icons, SIZES } from '../../constants';
 import useFetch  from '../../hook/useFetch';
 
+const tabs = ["About", "Qualifications", "Responsabilities"];
 
 const JobDetails = () => {
     const params = useLocalSearchParams ();
@@ -19,8 +20,27 @@ const JobDetails = () => {
     });
     
     const [refreshing, setRefreshing] = useState(false);
+    const [activeTab, setActiveTab] = useState(tabs[0]);
 
-    const onRefresh = () => {}
+    const onRefresh = () => {};
+
+    const displayTabContent = () => {
+        switch(activeTab) {
+            case "Qualifications":
+                return (
+                    <Specifics
+                        title="Qualifications"
+                        points={data[0].job_highlights?.qualifications ?? ['N/A']}
+                />
+                )
+            case "About":
+                break;
+            case "Responsabilities":
+            default:
+                break;
+                 
+        }
+    }
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite}}
@@ -68,10 +88,16 @@ const JobDetails = () => {
                                 location={data[0].job_country}
                                 
                             />
-
+                            <Text>hello1</Text> 
                             <JobTabs 
+                                tabs={tabs}
+                                activeTab={activeTab}
+                                setActiveTab={setActiveTab}
+                            />
+                            <Text>hello2</Text>
 
-                            /> 
+                            {displayTabContent()} 
+                            <Text>hello3</Text>
                         </View>
                     )}
 
